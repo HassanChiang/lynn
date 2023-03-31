@@ -159,11 +159,8 @@ window.addEventListener("load", function () {
         html2canvas(document.body).then(function (canvas) {
             canvas.toBlob(function (blob) {
                 const formData = new FormData();
-                formData.append('file', blob,
-                    name + "_" +
-                    mobile + "_" +
-                    pro + "_"
-                    + formatDate(new Date()) + '.png');
+                formData.append('file', blob, formatDate(new Date()) + "_" +
+                    name + "_" + mobile + "_" + pro + '.png');
                 fetch('/upload', {
                     method: 'POST',
                     body: formData
