@@ -1,23 +1,15 @@
-package in.hocg.oss.spring.boot.autoconfigure.core;
+package com.fenxiangz.lynn.core;
 
 import cn.hutool.core.date.DateTime;
-import cn.hutool.crypto.digest.DigestUtil;
-import in.hocg.oss.spring.boot.autoconfigure.exception.UploadOssException;
-import in.hocg.oss.spring.boot.autoconfigure.utils.FileUtils;
+import com.fenxiangz.lynn.exception.UploadOssException;
+import com.fenxiangz.lynn.utils.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.util.Date;
 
-/**
- * Created by hocgin on 2020/8/14
- * email: hocgin@gmail.com
- *
- * @author hocgin
- */
 public interface OssFileService {
 
     default String upload(MultipartFile file) {
@@ -25,7 +17,7 @@ public interface OssFileService {
             File uploadFile = FileUtils.createTempFile(file.getOriginalFilename()).toFile();
             file.transferTo(uploadFile);
             return this.upload(uploadFile);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new UploadOssException("文件上传失败");
         }
     }

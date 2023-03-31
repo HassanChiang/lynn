@@ -1,6 +1,6 @@
 package in.hocg.oss.core;
 
-import in.hocg.oss.spring.boot.samples.Application;
+import com.fenxiangz.lynn.Application;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

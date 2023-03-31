@@ -1,30 +1,29 @@
-package in.hocg.oss.spring.boot.autoconfigure.impl;
+package com.fenxiangz.lynn.core;
 
 import cn.hutool.core.util.URLUtil;
 import com.aliyun.oss.OSSClient;
-import in.hocg.oss.spring.boot.autoconfigure.core.OssFileService;
-import lombok.RequiredArgsConstructor;
+import com.fenxiangz.lynn.conf.properties.OssProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.InputStream;
 
-/**
- * Created by hocgin on 2020/8/14
- * email: hocgin@gmail.com
- *
- * @author hocgin
- */
 @Slf4j
-@RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class AliOssFileServiceImpl implements OssFileService, InitializingBean {
-    private final String accessKey;
-    private final String secretKey;
-    private final String space;
-    private final String domain;
+    private String accessKey;
+    private String secretKey;
+    private String space;
+    private String domain;
     private OSSClient ossClient;
+
+    public AliOssFileServiceImpl(OssProperties properties) {
+        this.accessKey = properties.getAccessKey();
+        this.secretKey = properties.getSecretKey();
+        this.space = properties.getSpace();
+        this.domain = properties.getDomain();
+    }
 
     @Override
     public String upload(File file, String filename) {

@@ -1,7 +1,7 @@
 package in.hocg.oss;
 
 import in.hocg.oss.core.AbstractSpringBootTest;
-import in.hocg.oss.spring.boot.autoconfigure.core.OssFileService;
+import com.fenxiangz.lynn.core.OssFileService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

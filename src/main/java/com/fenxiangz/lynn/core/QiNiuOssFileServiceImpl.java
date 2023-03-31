@@ -1,16 +1,17 @@
-package in.hocg.oss.spring.boot.autoconfigure.impl;
+package com.fenxiangz.lynn.core;
 
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.fenxiangz.lynn.conf.properties.OssProperties;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
-import in.hocg.oss.spring.boot.autoconfigure.core.OssFileService;
-import in.hocg.oss.spring.boot.autoconfigure.exception.UploadOssException;
+import com.fenxiangz.lynn.core.OssFileService;
+import com.fenxiangz.lynn.exception.UploadOssException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -18,20 +19,20 @@ import org.springframework.beans.factory.InitializingBean;
 import java.io.File;
 import java.io.InputStream;
 
-/**
- * Created by hocgin on 2020/8/14
- * email: hocgin@gmail.com
- *
- * @author hocgin
- */
 @Slf4j
-@RequiredArgsConstructor
 public class QiNiuOssFileServiceImpl implements OssFileService, InitializingBean {
-    private final String accessKey;
-    private final String secretKey;
-    private final String space;
-    private final String domain;
+    private String accessKey;
+    private String secretKey;
+    private String space;
+    private String domain;
     private Auth auth;
+
+    public QiNiuOssFileServiceImpl(OssProperties properties) {
+        this.accessKey = properties.getAccessKey();
+        this.secretKey = properties.getSecretKey();
+        this.space = properties.getSpace();
+        this.domain = properties.getDomain();
+    }
 
     @Override
     public String upload(File file, String filename) {

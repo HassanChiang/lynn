@@ -16,7 +16,7 @@
     <artifactId>lynn</artifactId>
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
-        <start-class>in.hocg.oss.spring.boot.samples.Application</start-class>
+        <start-class>com.fenxiangz.lynn.Application</start-class>
     </properties>
 
     <dependencies>
