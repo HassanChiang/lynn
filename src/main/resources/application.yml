@@ -1,0 +1,9 @@
+server:
+  port: 12375
+oss:
+  enabled: true
+  domain: http://storage.fenxiangz.com
+  secretKey: RwoIHaeebc5RJEBOXvoqVmQ6VGfyBvyjXTlN_Atk
+  accessKey: q9zkHKkZMrCvVkCAixPAoxS_2jDROmuBn80vFmyg
+  space: fenxiangz
+  type: qiniu
