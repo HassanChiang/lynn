@@ -77,10 +77,7 @@ function formatDate(date) {
 }
 
 window.addEventListener("load", function () {
-    var t = new SVG(document.querySelector(".graph")).size("100%", "150%");
-    var elements = t.group().id("elements");
 
-    var colors = ["#e74c3c", "#f7a1ed", "#2ecc71", "#f1c40f", "#3498db"];
 
     let min = window.innerWidth * 0.02;
     let widthSpace = 0.2;
@@ -90,11 +87,17 @@ window.addEventListener("load", function () {
     let isIOS = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
     let isWeixin = ua.indexOf("MicroMessenger") > 0; //是否微信
     let isMobile = isAndroid || isIOS || isWeixin;
+    let svgHeight = "150%";
     if (isMobile) {
         min = window.innerWidth * 0.04;
         widthSpace = 0.3;
+        svgHeight = "100%";
     }
 
+    var t = new SVG(document.querySelector(".graph")).size("100%", svgHeight);
+    var elements = t.group().id("elements");
+
+    var colors = ["#e74c3c", "#f7a1ed", "#2ecc71", "#f1c40f", "#3498db"];
     var shapeSize = [min, min * 2, min * 3, min * 4];
 
     var shapes = [];
@@ -137,11 +140,20 @@ window.addEventListener("load", function () {
             alert("请输入一下手机号吧，谢谢~");
             return;
         }
-        let desc = $("#desc").val();
+        let desc = $("#desc").text();
         if (!desc.trim()) {
             alert("没有描述呀");
             return;
         }
+        $(".save-btn").attr("disabled", "disabled");
+        var waitSeconds = 0;
+        let intervalA = setInterval(function () {
+            $(".save-btn").html("正在上传，请稍等... " + (waitSeconds++) + "s");
+            if (waitSeconds >= 60) {
+                clearInterval(intervalA);
+                alert("网络太慢了，上传失败，麻烦手动截图发我吧，/(ㄒoㄒ)/~~，谢谢！");
+            }
+        }, 1000);
         var pro = $("#profession").val();
         pro = pro ? pro : "无专业";
         html2canvas(document.body).then(function (canvas) {
@@ -156,11 +168,20 @@ window.addEventListener("load", function () {
                     method: 'POST',
                     body: formData
                 }).then(response => {
-                    $(".save-btn").attr("disabled","disabled");
                     alert("发送成功！");
+
+                    $(".save-btn").removeAttr("disabled");
+                    $(".save-btn").html("已提交");
+                    clearInterval(intervalA);
+
                     console.log('Upload successful');
                 }).catch(error => {
                     alert("操作失败了，麻烦手动截图发送吧，/(ㄒoㄒ)/~~！");
+
+                    $(".save-btn").removeAttr("disabled");
+                    $(".save-btn").html("提交失败，点我重新提交！");
+                    clearInterval(intervalA);
+
                     console.error('Error uploading file:', error);
                 });
             });
