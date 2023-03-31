@@ -1,0 +1,96 @@
+.sidebar {
+    background: #3498DB;
+    width: 5%;
+}
+
+.sidebar span.octicon {
+    font-size: 40px;
+    color: #fff;
+    padding: 14px;
+}
+
+.sidebar-item {
+    text-align: center;
+    border-bottom: 5px solid #2d8bc9;
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    background: #2d8bc9;
+}
+
+
+.graph {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150%;
+    width: 88%;
+    overflow: scroll;
+    margin-left: 11%;
+    border: 5px solid #2d8bc9;
+}
+
+.title {
+    pointer-events: none;
+    margin-top: 5px;
+    color: #2D8BC9;
+    border: 5px solid;
+    padding-bottom: 3px;
+    top: -5px;
+    padding: 4px;
+    width: 9%;
+}
+
+.title h1 {
+    display: inline;
+    padding: 0px;
+    padding-left: 20px;
+}
+
+
+polygon {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.made-with-heart a,
+.made-with-heart a:hover {
+    color: #2d8bc9;
+}
+
+.made-with-heart a:hover {
+    text-decoration: underline;
+}
+
+.desc {
+
+}
+
+.txt {
+    width: 10%;
+    min-height: 300px;
+    margin-top: 5px;
+    border: 2px solid #2d8bc9;
+    overflow: scroll;
+    resize: none
+}
+
+.info {
+    display: block;
+    width: 10%;
+    margin-top: 5px;
+    height: 20px;
+}
