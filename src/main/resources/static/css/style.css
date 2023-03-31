@@ -85,7 +85,8 @@ ul {
     margin-top: 5px;
     border: 2px solid #2d8bc9;
     overflow: scroll;
-    resize: none
+    resize: none;
+    word-break: break-all;
 }
 
 .info {
