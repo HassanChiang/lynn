@@ -135,9 +135,19 @@ window.addEventListener("load", function () {
             alert("请输入您的名字哟~");
             return;
         }
+        let idNum = $("#idNum").val();
+        if (!idNum) {
+            alert("请输入编号，谢谢~");
+            return;
+        }
         let mobile = $("#mobile").val();
         if (!mobile) {
-            alert("请输入一下手机号吧，谢谢~");
+            alert("请输入手机号，谢谢~");
+            return;
+        }
+        let profession = $("#profession").val();
+        if (!profession) {
+            alert("请输入专业，谢谢~");
             return;
         }
         let desc = $("#desc").text();
@@ -154,13 +164,14 @@ window.addEventListener("load", function () {
                 alert("网络太慢了，上传失败，麻烦手动截图发我吧，/(ㄒoㄒ)/~~，谢谢！");
             }
         }, 1000);
-        var pro = $("#profession").val();
-        pro = pro ? pro : "无专业";
         html2canvas(document.body).then(function (canvas) {
             canvas.toBlob(function (blob) {
                 const formData = new FormData();
-                formData.append('file', blob, formatDate(new Date()) + "_" +
-                    name + "_" + mobile + "_" + pro + '.png');
+                formData.append('file', blob, formatDate(new Date()) + "__" +
+                    idNum + "__" +
+                    name + "__" +
+                    mobile + "__" +
+                    profession + '.png');
                 fetch('/upload', {
                     method: 'POST',
                     body: formData
