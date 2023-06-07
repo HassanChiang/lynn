@@ -140,11 +140,6 @@ window.addEventListener("load", function () {
             alert("请输入编号，谢谢~");
             return;
         }
-        let mobile = $("#mobile").val();
-        if (!mobile) {
-            alert("请输入手机号，谢谢~");
-            return;
-        }
         let profession = $("#profession").val();
         if (!profession) {
             alert("请输入专业，谢谢~");
@@ -170,7 +165,6 @@ window.addEventListener("load", function () {
                 formData.append('file', blob, formatDate(new Date()) + "__" +
                     idNum + "__" +
                     name + "__" +
-                    mobile + "__" +
                     profession + '.png');
                 fetch('/upload', {
                     method: 'POST',
