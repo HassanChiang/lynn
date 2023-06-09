@@ -1,6 +1,6 @@
 window.showTutorial = function () {
     swal({
-        title: "使用说明"
+        title: "请先阅读一遍操作说明<br/>(关闭此弹窗后，左上角“？”按钮可以再次打开此说明)"
         , html: true
         , confirmButtonText: "知道了"
         , text: "<ul>" +
@@ -8,6 +8,8 @@ window.showTutorial = function () {
             "    <li><strong>单击鼠标右键</strong>: 顺时针旋转图形（向右旋转）</li>" +
             "    <li><strong>按住CTRL，然后点击鼠标左键进行图形翻转</strong></li>" +
             "    <li><strong>长按鼠标左键进行图形移动</strong></li>" +
+            "    <li><strong>---------------</strong></li>" +
+            "    <li><strong>完成作图后请补充左侧下方的个人信息</strong></li>" +
             "</ul>" +
             "<div class='made-with-heart'>" +
             // "    <span class='octicon octicon-pencil'></span>修改着作者：Lynn， Based on <span class='octicon octicon-heart'></span> by <a href='http://ionicabizau.net'>Ionică Bizău</a>" +
@@ -129,6 +131,12 @@ window.addEventListener("load", function () {
     Crossy("polygon", "transformBox", "fill-box");
     Crossy("polygon", "transition", "all 500 ease");
 
+    //初始化清除数据
+    $("#chineseName").val("");
+    $("#idNum").val("");
+    $("#profession").val("");
+    $("#desc").text("");
+
     $(".save-btn").click(function () {
         let name = $("#chineseName").val();
         if (!name) {
@@ -189,4 +197,7 @@ window.addEventListener("load", function () {
             });
         });
     });
+
+    //第一次弹出提示
+    showTutorial();
 });
